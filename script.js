@@ -46,50 +46,40 @@ showBear();
 }
 document.getElementById("nextBtn").addEventListener("click", nextMessage);
 function createBalloon() {
-let balloon = document.createElement("div");
-balloon.classList.add("balloon");
+    let balloon = document.createElement("div");
+    balloon.classList.add("balloon");
 
-// random position
-balloon.style.left = Math.random() * 100 + "vw";
+    // random position
+    balloon.style.left = Math.random() * 100 + "vw";
 
-// random speed
-balloon.style.animationDuration = (4 + Math.random() * 4) + "s";
+    // random speed
+    balloon.style.animationDuration = (4 + Math.random() * 4) + "s";
 
-// 🎯 ADD CLICK TO POP
-balloon.addEventListener("click", () => {
-balloon.classList.add("pop");
+    // 🎯 POP FUNCTION (WORKS ON MOBILE + DESKTOP)
+    function popBalloon(e) {
+        e.preventDefault();
+        balloon.classList.add("pop");
 
-// remove after animation
-setTimeout(() => {
-balloon.remove();
-}, 300);
-});
+        setTimeout(() => {
+            balloon.remove();
+        }, 300);
+    }
 
-document.getElementById("balloon-container").appendChild(balloon);
+    // 👆 BOTH EVENTS
+    balloon.addEventListener("click", popBalloon);
+    balloon.addEventListener("touchstart", popBalloon);
 
-setTimeout(() => {
-balloon.remove();
-}, 8000);
-}
-
-// create balloons
-setInterval(createBalloon, 600);
-
-// keep creating balloons
-setInterval(createBalloon, 600);
-balloon.addEventListener("click", popBalloon);
-balloon.addEventListener("touchstart", popBalloon);
-
-function popBalloon(e) {
-    e.preventDefault();
-
-    let balloon = e.target;
-    balloon.classList.add("pop");
+    document.getElementById("balloon-container").appendChild(balloon);
 
     setTimeout(() => {
         balloon.remove();
-    }, 300);
+    }, 8000);
 }
+document.addEventListener("DOMContentLoaded", function () {
+    setInterval(createBalloon, 700);
+});
+
+
 // 🎆 CONFETTI FUNCTION
 function launchConfetti() {
 for (let i = 0; i < 200; i++) {
