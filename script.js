@@ -9,6 +9,8 @@ let messages = [
 ];
 
 // Images (same order as messages)
+// PRELOAD IMAGES
+
 let images = [
 "me_smiley.png",
 "me_cute.png",
@@ -17,6 +19,13 @@ let images = [
 "mum_papa.png",
 "mum.png"
 ];
+let preloadedImages = [];
+
+images.forEach(src => {
+    let img = new Image();
+    img.src = src;
+    preloadedImages.push(img);
+});
 
 let index = 0;
 
@@ -38,7 +47,7 @@ msg.classList.remove("fade");
 
 setTimeout(() => {
 msg.innerText = messages[index];
-img.src = images[index];
+img.src = preloadedImages[index];
 msg.classList.add("fade");
 
 // 🎆 FINAL MESSAGE
