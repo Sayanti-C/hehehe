@@ -63,25 +63,13 @@ showBear();
 let musicStarted = false;
 
 document.getElementById("nextBtn").addEventListener("click", function () {
-    
-    // 🎵 START MUSIC (DIRECT USER ACTION)
     if (!musicStarted) {
-        let music = document.getElementById("bgMusic");
-
-        music.volume = 0.5;
-
-        music.play().then(() => {
-            console.log("Music started ✅");
-        }).catch(err => {
-            console.log("Blocked ❌", err);
-        });
-
+        startMusic();
         musicStarted = true;
     }
-
-    // THEN run your normal logic
     nextMessage();
 });
+    
 function createBalloon() {
     let balloon = document.createElement("div");
     balloon.classList.add("balloon");
