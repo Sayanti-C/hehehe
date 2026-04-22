@@ -37,21 +37,18 @@ function nextMessage() {
     let msg = document.getElementById("message");
     let img = document.getElementById("photo");
 
-    msg.classList.remove("fade");
+    msg.innerText = "Loading... ⏳";  // temporary text
 
-    setTimeout(() => {
+    let newImg = new Image();
+    newImg.src = images[index];
+
+    newImg.onload = function () {
         msg.innerText = messages[index];
         img.src = images[index];
-        msg.classList.add("fade");
-
-        // 🎆 FINAL MESSAGE
-        if (index === messages.length - 1) {
-            launchConfetti();
-            showBear();
-        }
-
-    }, 100);
+    };
 }
+
+  
 
 function createBalloon() {
     let balloon = document.createElement("div");
