@@ -37,16 +37,20 @@ function nextMessage() {
     let msg = document.getElementById("message");
     let img = document.getElementById("photo");
 
-    msg.innerText = "Loading... ⏳";  // temporary text
+    msg.classList.remove("fade");
 
-    let newImg = new Image();
-    newImg.src = images[index];
-
-    newImg.onload = function () {
+    setTimeout(() => {
         msg.innerText = messages[index];
         img.src = images[index];
-    };
-}
+        msg.classList.add("fade");
+
+        // 🎆 FINAL MESSAGE
+        if (index === messages.length - 1) {
+            launchConfetti();
+            showBear();
+        }
+
+    }, 100);
 
   
 
