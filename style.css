@@ -1,0 +1,132 @@
+/* RESET */
+body {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    overflow: hidden;
+    font-family: 'Poppins', sans-serif;
+
+    background: linear-gradient(135deg, #fbc2eb, #a6c1ee);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* BALLOON CONTAINER */
+#balloon-container {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    overflow: hidden;
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* BALLOONS */
+.balloon {
+    position: absolute;
+    bottom: -120px;
+    width: 40px;
+    height: 55px;
+    border-radius: 50%;
+    opacity: 0.8;
+    animation: floatUp linear infinite;
+}
+
+@keyframes floatUp {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(-120vh); }
+}
+
+/* CARD */
+.card {
+    position: relative;
+    z-index: 10;
+
+    width: 90%;
+    max-width: 350px;
+
+    padding: 25px;
+    border-radius: 20px;
+
+    background: rgba(255,255,255,0.25);
+    backdrop-filter: blur(20px);
+
+    box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+/* TEXT */
+h1 {
+    font-size: 1.4rem;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+/* IMAGE */
+.cute {
+    width: 75%;
+    max-width: 220px;
+    height: auto;
+    border-radius: 15px;
+    margin: 10px 0;
+
+    transition: all 0.4s ease;
+}
+
+/* BUTTON */
+button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 20px;
+    background: #ff4d6d;
+    color: white;
+    font-size: 15px;
+    cursor: pointer;
+}
+
+/* CONFETTI */
+.confetti {
+    position: fixed;
+    width: 8px;
+    height: 8px;
+    opacity: 0.9;
+    animation: fallSpread linear forwards;
+}
+
+@keyframes fallSpread {
+    0% { transform: translate(0,0); }
+    100% { transform: translate(var(--x),100vh) rotate(720deg); }
+}
+
+/* BEAR */
+#bear {
+    position: fixed;
+    width: 80px;
+    bottom: 10px;
+    right: 10px;
+    display: none;
+    z-index: 20;
+}
+
+/* 📱 MOBILE FIX */
+@media (max-width: 480px) {
+    h1 {
+        font-size: 1.2rem;
+    }
+
+    .cute {
+        width: 80%;
+    }
+
+    #bear {
+        width: 70px;
+    }
+}
