@@ -44,11 +44,7 @@ index = (index + 1) % messages.length;
 
 let msg = document.getElementById("message");
 let img = document.getElementById("photo");
-if (!musicStarted) {
-        let music = document.getElementById("bgMusic");
-        music.play();
-        musicStarted = true;
-    }
+
 msg.classList.remove("fade");
 
 setTimeout(() => {
@@ -64,11 +60,26 @@ showBear();
 
 }, 100);
 }
+let musicStarted = false;
+
 document.getElementById("nextBtn").addEventListener("click", function () {
+    
+    // 🎵 START MUSIC (DIRECT USER ACTION)
     if (!musicStarted) {
-        startMusic();
+        let music = document.getElementById("bgMusic");
+
+        music.volume = 0.5;
+
+        music.play().then(() => {
+            console.log("Music started ✅");
+        }).catch(err => {
+            console.log("Blocked ❌", err);
+        });
+
         musicStarted = true;
     }
+
+    // THEN run your normal logic
     nextMessage();
 });
 function createBalloon() {
