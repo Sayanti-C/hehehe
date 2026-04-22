@@ -128,3 +128,7 @@ function showBear() {
         bear.style.top = y + "px";
     }, 1500);
 }
+
+window.onload = function () {
+    setInterval(createBalloon, 600);
+};
