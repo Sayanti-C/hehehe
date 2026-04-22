@@ -24,11 +24,16 @@ let index = 0;
 let bear = document.getElementById("bear");
 
 function nextMessage() {
+    let musicStarted = false;
 index = (index + 1) % messages.length;
 
 let msg = document.getElementById("message");
 let img = document.getElementById("photo");
-
+if (!musicStarted) {
+        let music = document.getElementById("bgMusic");
+        music.play();
+        musicStarted = true;
+    }
 msg.classList.remove("fade");
 
 setTimeout(() => {
