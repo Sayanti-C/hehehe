@@ -36,6 +36,18 @@ body {
     animation: floatUp linear infinite;
 }
 
+/* colors */
+.balloon:nth-child(1){ background: #ff4d6d; }
+.balloon:nth-child(2){ background: #4dabf7; }
+.balloon:nth-child(3){ background: #ffd43b; }
+.balloon:nth-child(4){ background: #69db7c; }
+.balloon:nth-child(5){ background: #b197fc; }
+
+@keyframes floatUp {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(-120vh); }
+}
+
 @keyframes floatUp {
     0% { transform: translateY(0); }
     100% { transform: translateY(-120vh); }
