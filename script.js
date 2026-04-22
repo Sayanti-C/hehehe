@@ -39,19 +39,20 @@ function nextMessage() {
 
     msg.classList.remove("fade");
 
-    setTimeout(() => {
-        msg.innerText = messages[index];
-        img.src = images[index];
-        msg.classList.add("fade");
+    // change text immediately
+    msg.innerText = messages[index];
 
-        // 🎆 FINAL MESSAGE
-        if (index === messages.length - 1) {
-            launchConfetti();
-            showBear();
-        }
+    // change image directly (no waiting)
+    img.src = images[index];
 
-    }, 100);
+    msg.classList.add("fade");
 
+    // 🎆 FINAL MESSAGE EFFECTS
+    if (index === messages.length - 1) {
+        launchConfetti();
+        showBear();
+    }
+}
   
 
 function createBalloon() {
