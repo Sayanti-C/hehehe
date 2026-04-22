@@ -12,12 +12,12 @@ let messages = [
 // PRELOAD IMAGES
 
 let images = [
-"me_smiley.png",
-"me_cute.png",
-"mum_me.png",
-"mum_cute.png",
-"mum_papa.png",
-"mum.png"
+"me_smiley.jpg",
+"me_cute.jpg",
+"mum_me.jpg",
+"mum_cute.jpg",
+"mum_papa.jpg",
+"mum.jpg"
 ];
 let preloadedImages = [];
 
