@@ -1,3 +1,11 @@
+// preload all images
+let preloadedImages = [];
+
+for (let i = 0; i < images.length; i++) {
+    let img = new Image();
+    img.src = images[i];
+    preloadedImages.push(img);
+}
 // Messages
 let messages = [
     "Maaaa....💖",
