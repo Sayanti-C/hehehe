@@ -8,7 +8,7 @@ let messages = [
 "!!! Happy Birthday !!!🎂"
 ];
 
-// Images (same order as messages)
+// Images
 let images = [
 "me_smiley.png",
 "me_cute.png",
@@ -19,142 +19,106 @@ let images = [
 ];
 
 let index = 0;
-
-// NEXT BUTTON FUNCTION
-let bear = document.getElementById("bear");
-    let musicStarted = false;
 let musicStarted = false;
 
+// 🎵 MUSIC FUNCTION
 function startMusic() {
     let music = document.getElementById("bgMusic");
-
     music.volume = 0.5;
 
-    let playPromise = music.play();
-
-    if (playPromise !== undefined) {
-        playPromise.catch(error => {
-            console.log("Playback blocked:", error);
-        });
-    }
+    music.play().catch(err => {
+        console.log("Music blocked:", err);
+    });
 }
 
+// NEXT MESSAGE
 function nextMessage() {
-index = (index + 1) % messages.length;
+    index = (index + 1) % messages.length;
 
-let msg = document.getElementById("message");
-let img = document.getElementById("photo");
+    let msg = document.getElementById("message");
+    let img = document.getElementById("photo");
 
-msg.classList.remove("fade");
+    msg.classList.remove("fade");
 
-setTimeout(() => {
-msg.innerText = messages[index];
-img.src = images[index];
-msg.classList.add("fade");
+    setTimeout(() => {
+        msg.innerText = messages[index];
+        img.src = images[index];
+        msg.classList.add("fade");
 
-// 🎆 FINAL MESSAGE
-if (index === messages.length - 1) {
-launchConfetti();
-showBear();
+        if (index === messages.length - 1) {
+            launchConfetti();
+            showBear();
+        }
+    }, 100);
 }
 
-}, 100);
-}
-let musicStarted = false;
-
-document.getElementById("nextBtn").addEventListener("click", function () {
-    if (!musicStarted) {
-        startMusic();
-        musicStarted = true;
-    }
-    nextMessage();
-});
-    
+// 🎈 BALLOONS
 function createBalloon() {
     let balloon = document.createElement("div");
     balloon.classList.add("balloon");
 
-    // random position
     balloon.style.left = Math.random() * 100 + "vw";
-
-    // random speed
     balloon.style.animationDuration = (4 + Math.random() * 4) + "s";
 
-    // 🎯 POP FUNCTION (WORKS ON MOBILE + DESKTOP)
     function popBalloon(e) {
         e.preventDefault();
         balloon.classList.add("pop");
 
-        setTimeout(() => {
-            balloon.remove();
-        }, 300);
+        setTimeout(() => balloon.remove(), 300);
     }
 
-    // 👆 BOTH EVENTS
     balloon.addEventListener("click", popBalloon);
     balloon.addEventListener("touchstart", popBalloon);
 
     document.getElementById("balloon-container").appendChild(balloon);
 
-    setTimeout(() => {
-        balloon.remove();
-    }, 8000);
+    setTimeout(() => balloon.remove(), 8000);
 }
-document.addEventListener("DOMContentLoaded", function () {
-    setInterval(createBalloon, 700);
-});
 
-
-// 🎆 CONFETTI FUNCTION
+// 🎆 CONFETTI
 function launchConfetti() {
-for (let i = 0; i < 200; i++) {
-let confetti = document.createElement("div");
-confetti.classList.add("confetti");
+    for (let i = 0; i < 150; i++) {
+        let c = document.createElement("div");
+        c.classList.add("confetti");
 
-// RANDOM horizontal start
-confetti.style.left = Math.random() * 100 + "vw";
+        c.style.left = Math.random() * 100 + "vw";
+        c.style.top = Math.random() * 50 + "vh";
 
-// RANDOM vertical start (IMPORTANT FIX)
-confetti.style.top = Math.random() * 50 + "vh";
+        c.style.setProperty('--x', (Math.random() - 0.5) * 200 + "px");
 
-// RANDOM COLORS
-let colors = ["#ff4d6d", "#ffd43b", "#69db7c", "#4dabf7", "#b197fc"];
-confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
-
-// RANDOM SIZE
-let size = 5 + Math.random() * 8;
-confetti.style.width = size + "px";
-confetti.style.height = size + "px";
-
-// RANDOM DIRECTION (LEFT/RIGHT SPREAD)
-let randomX = (Math.random() - 0.5) * 200; 
-
-confetti.style.setProperty('--x', randomX + 'px');
-
-// RANDOM SPEED
-confetti.style.animationDuration = (2 + Math.random() * 2) + "s";
-
-document.body.appendChild(confetti);
-
-setTimeout(() => {
-confetti.remove();
-}, 4000);
-}
+        document.body.appendChild(c);
+        setTimeout(() => c.remove(), 4000);
+    }
 }
 
+// 🐻 BEAR
 function showBear() {
-let bear = document.getElementById("bear");
-bear.style.display = "block";
+    let bear = document.getElementById("bear");
+    bear.style.display = "block";
 
-// Move randomly every 1.5 sec
-setInterval(() => {
-let x = Math.random() * (window.innerWidth - 120);
-let y = Math.random() * (window.innerHeight - 120);
+    setInterval(() => {
+        let x = Math.random() * (window.innerWidth - 120);
+        let y = Math.random() * (window.innerHeight - 120);
 
-bear.style.left = x + "px";
-bear.style.top = y + "px";
-}, 1500);
+        bear.style.left = x + "px";
+        bear.style.top = y + "px";
+    }, 1500);
 }
+
+// 🚀 INIT EVERYTHING AFTER DOM LOAD
 document.addEventListener("DOMContentLoaded", function () {
-    setInterval(createBalloon, 600);
+
+    // button click
+    document.getElementById("nextBtn").addEventListener("click", function () {
+
+        if (!musicStarted) {
+            startMusic();
+            musicStarted = true;
+        }
+
+        nextMessage();
+    });
+
+    // balloons
+    setInterval(createBalloon, 700);
 });
