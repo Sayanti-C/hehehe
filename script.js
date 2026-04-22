@@ -23,21 +23,6 @@ let index = 0;
 // NEXT BUTTON FUNCTION
 let bear = document.getElementById("bear");
     let musicStarted = false;
-let musicStarted = false;
-
-function startMusic() {
-    let music = document.getElementById("bgMusic");
-
-    music.volume = 0.5;
-
-    let playPromise = music.play();
-
-    if (playPromise !== undefined) {
-        playPromise.catch(error => {
-            console.log("Playback blocked:", error);
-        });
-    }
-}
 
 function nextMessage() {
 index = (index + 1) % messages.length;
@@ -64,13 +49,7 @@ showBear();
 
 }, 100);
 }
-document.getElementById("nextBtn").addEventListener("click", function () {
-    if (!musicStarted) {
-        startMusic();
-        musicStarted = true;
-    }
-    nextMessage();
-});
+document.getElementById("nextBtn").addEventListener("click", nextMessage);
 function createBalloon() {
     let balloon = document.createElement("div");
     balloon.classList.add("balloon");
