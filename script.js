@@ -77,7 +77,19 @@ setInterval(createBalloon, 600);
 
 // keep creating balloons
 setInterval(createBalloon, 600);
+balloon.addEventListener("click", popBalloon);
+balloon.addEventListener("touchstart", popBalloon);
 
+function popBalloon(e) {
+    e.preventDefault();
+
+    let balloon = e.target;
+    balloon.classList.add("pop");
+
+    setTimeout(() => {
+        balloon.remove();
+    }, 300);
+}
 // 🎆 CONFETTI FUNCTION
 function launchConfetti() {
 for (let i = 0; i < 200; i++) {
