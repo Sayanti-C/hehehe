@@ -22,9 +22,9 @@ let index = 0;
 
 // NEXT BUTTON FUNCTION
 let bear = document.getElementById("bear");
+    let musicStarted = false;
 
 function nextMessage() {
-    let musicStarted = false;
 index = (index + 1) % messages.length;
 
 let msg = document.getElementById("message");
