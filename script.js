@@ -44,7 +44,7 @@ showBear();
 
 }, 100);
 }
-
+document.getElementById("nextBtn").addEventListener("click", nextMessage);
 function createBalloon() {
 let balloon = document.createElement("div");
 balloon.classList.add("balloon");
@@ -140,4 +140,6 @@ bear.style.left = x + "px";
 bear.style.top = y + "px";
 }, 1500);
 }
-
+document.addEventListener("DOMContentLoaded", function () {
+    setInterval(createBalloon, 600);
+});
