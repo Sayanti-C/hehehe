@@ -1,4 +1,5 @@
 // Messages
+alert("JS LOADED");
 let messages = [
 "Maaaa....💖",
 "আমি কিছু বলবো ...",
