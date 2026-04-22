@@ -20,19 +20,29 @@ body {
     height: 100%;
     top: 0;
     left: 0;
+
+    pointer-events: none;  /* allows clicks to pass */
     overflow: hidden;
-    pointer-events: none;
-    z-index: 0;
+
+    z-index: 1;
+}
+
+.card {
+    position: relative;
+    z-index: 10;
 }
 
 /* BALLOONS */
 .balloon {
-    position: absolute;
+    position: absolute;   /* MUST be absolute */
     bottom: -120px;
-    width: 40px;
-    height: 55px;
+
+    width: 35px;
+    height: 50px;
+
     border-radius: 50%;
-    opacity: 0.8;
+    opacity: 0.9;
+
     animation: floatUp linear infinite;
 }
 
