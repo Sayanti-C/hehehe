@@ -8,7 +8,7 @@ let messages = [
 "!!! Happy Birthday !!!🎂"
 ];
 
-// Images (same order as messages)
+// Images
 let images = [
 "me_smiley.png",
 "me_cute.png",
@@ -20,121 +20,69 @@ let images = [
 
 let index = 0;
 
-// NEXT BUTTON FUNCTION
-let bear = document.getElementById("bear");
-    let musicStarted = false;
-
+// NEXT BUTTON
 function nextMessage() {
-index = (index + 1) % messages.length;
+    index = (index + 1) % messages.length;
 
-let msg = document.getElementById("message");
-let img = document.getElementById("photo");
-if (!musicStarted) {
-        let music = document.getElementById("bgMusic");
-        music.play();
-        musicStarted = true;
+    document.getElementById("message").innerText = messages[index];
+    document.getElementById("photo").src = images[index];
+
+    if (index === messages.length - 1) {
+        launchConfetti();
+        showBear();
     }
-msg.classList.remove("fade");
-
-setTimeout(() => {
-msg.innerText = messages[index];
-img.src = images[index];
-msg.classList.add("fade");
-
-// 🎆 FINAL MESSAGE
-if (index === messages.length - 1) {
-launchConfetti();
-showBear();
 }
 
-}, 100);
-}
-document.getElementById("nextBtn").addEventListener("click", nextMessage);
+// 🎈 BALLOONS
 function createBalloon() {
-    let balloon = document.createElement("div");
-    balloon.classList.add("balloon");
+    let b = document.createElement("div");
+    b.classList.add("balloon");
 
-    // random position
-    balloon.style.left = Math.random() * 100 + "vw";
+    b.style.left = Math.random() * 100 + "vw";
+    b.style.animationDuration = (4 + Math.random() * 4) + "s";
 
-    // random speed
-    balloon.style.animationDuration = (4 + Math.random() * 4) + "s";
-
-    // 🎯 POP FUNCTION (WORKS ON MOBILE + DESKTOP)
-    function popBalloon(e) {
+    // tap/click pop
+    function pop(e) {
         e.preventDefault();
-        balloon.classList.add("pop");
-
-        setTimeout(() => {
-            balloon.remove();
-        }, 300);
+        b.classList.add("pop");
+        setTimeout(() => b.remove(), 300);
     }
 
-    // 👆 BOTH EVENTS
-    balloon.addEventListener("click", popBalloon);
-    balloon.addEventListener("touchstart", popBalloon);
+    b.addEventListener("click", pop);
+    b.addEventListener("touchstart", pop);
 
-    document.getElementById("balloon-container").appendChild(balloon);
+    document.getElementById("balloon-container").appendChild(b);
 
-    setTimeout(() => {
-        balloon.remove();
-    }, 8000);
+    setTimeout(() => b.remove(), 8000);
 }
-document.addEventListener("DOMContentLoaded", function () {
-    setInterval(createBalloon, 700);
-});
 
-
-// 🎆 CONFETTI FUNCTION
+// 🎆 CONFETTI
 function launchConfetti() {
-for (let i = 0; i < 200; i++) {
-let confetti = document.createElement("div");
-confetti.classList.add("confetti");
+    for (let i = 0; i < 100; i++) {
+        let c = document.createElement("div");
+        c.classList.add("confetti");
 
-// RANDOM horizontal start
-confetti.style.left = Math.random() * 100 + "vw";
+        c.style.left = Math.random() * 100 + "vw";
+        c.style.setProperty('--x', (Math.random() - 0.5) * 200 + "px");
 
-// RANDOM vertical start (IMPORTANT FIX)
-confetti.style.top = Math.random() * 50 + "vh";
+        document.body.appendChild(c);
 
-// RANDOM COLORS
-let colors = ["#ff4d6d", "#ffd43b", "#69db7c", "#4dabf7", "#b197fc"];
-confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
-
-// RANDOM SIZE
-let size = 5 + Math.random() * 8;
-confetti.style.width = size + "px";
-confetti.style.height = size + "px";
-
-// RANDOM DIRECTION (LEFT/RIGHT SPREAD)
-let randomX = (Math.random() - 0.5) * 200; 
-
-confetti.style.setProperty('--x', randomX + 'px');
-
-// RANDOM SPEED
-confetti.style.animationDuration = (2 + Math.random() * 2) + "s";
-
-document.body.appendChild(confetti);
-
-setTimeout(() => {
-confetti.remove();
-}, 4000);
-}
+        setTimeout(() => c.remove(), 3000);
+    }
 }
 
+// 🐻 BEAR
 function showBear() {
-let bear = document.getElementById("bear");
-bear.style.display = "block";
-
-// Move randomly every 1.5 sec
-setInterval(() => {
-let x = Math.random() * (window.innerWidth - 120);
-let y = Math.random() * (window.innerHeight - 120);
-
-bear.style.left = x + "px";
-bear.style.top = y + "px";
-}, 1500);
+    let bear = document.getElementById("bear");
+    bear.style.display = "block";
 }
+
+// 🚀 START EVERYTHING
 document.addEventListener("DOMContentLoaded", function () {
-    setInterval(createBalloon, 600);
+
+    // button
+    document.getElementById("nextBtn").addEventListener("click", nextMessage);
+
+    // balloons
+    setInterval(createBalloon, 700);
 });
