@@ -55,12 +55,25 @@ function createBalloon() {
     // random speed
     balloon.style.animationDuration = (4 + Math.random() * 4) + "s";
 
+    // 🎯 ADD CLICK TO POP
+    balloon.addEventListener("click", () => {
+        balloon.classList.add("pop");
+
+        // remove after animation
+        setTimeout(() => {
+            balloon.remove();
+        }, 300);
+    });
+
     document.getElementById("balloon-container").appendChild(balloon);
 
     setTimeout(() => {
         balloon.remove();
     }, 8000);
 }
+
+// create balloons
+setInterval(createBalloon, 600);
 
 // keep creating balloons
 setInterval(createBalloon, 600);
