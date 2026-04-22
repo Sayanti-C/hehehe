@@ -49,17 +49,21 @@ function createBalloon() {
     let balloon = document.createElement("div");
     balloon.classList.add("balloon");
 
+    // random position
     balloon.style.left = Math.random() * 100 + "vw";
-    balloon.style.animationDuration = (5 + Math.random() * 5) + "s";
+
+    // random speed
+    balloon.style.animationDuration = (4 + Math.random() * 4) + "s";
 
     document.getElementById("balloon-container").appendChild(balloon);
 
     setTimeout(() => {
         balloon.remove();
-    }, 10000);
+    }, 8000);
 }
 
-setInterval(createBalloon, 500);
+// keep creating balloons
+setInterval(createBalloon, 600);
 
 // 🎆 CONFETTI FUNCTION
     function launchConfetti() {
