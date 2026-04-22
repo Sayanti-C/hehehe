@@ -1,0 +1,183 @@
+/* BODY (Fix 7: better background + center alignment) */
+body {
+    margin: 0;
+    height: 100vh;
+    overflow: hidden;
+    font-family: 'Poppins', sans-serif;
+
+    background: linear-gradient(135deg, #fbc2eb, #a6c1ee);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+/* CARD (Fix 1 + bonus animation) */
+.card {
+    width: 90%;
+    max-width: 350px;
+
+    padding: 20px;
+    border-radius: 20px;
+
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+/* TEXT (Fix 2) */
+h1 {
+    font-size: 1.4rem;
+    text-align: center;
+}
+
+
+/* IMAGE (Fix 3) */
+.cute {
+    width: 70%;
+    max-width: 220px;
+    height: auto;
+
+    border-radius: 15px;
+    object-fit: cover;
+
+    transition: all 0.4s ease;
+}
+
+/* BUTTON (Fix 4) */
+button {
+    font-size: 15px;
+    padding: 10px 18px;
+    border-radius: 20px;
+}
+button:hover {
+    transform: scale(1.08);
+}
+
+
+/* BALLOONS (Fix 5) */
+.balloon {
+    width: 35px;
+    height: 50px;
+}
+
+
+/* Balloon colors */
+.balloon:nth-child(1){ background: #ff4d6d; }
+.balloon:nth-child(2){ background: #4dabf7; }
+.balloon:nth-child(3){ background: #ffd43b; }
+.balloon:nth-child(4){ background: #69db7c; }
+.balloon:nth-child(5){ background: #b197fc; }
+
+
+/* FLOAT ANIMATION (Fix 6) */
+@keyframes floatUp {
+    0% {
+        transform: translateY(0) translateX(0);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(-120vh) translateX(50px);
+        opacity: 0.8;
+    }
+}
+
+
+/* TEXT FADE ANIMATION */
+.fade {
+    animation: fadeText 0.5s ease;
+}
+
+@keyframes fadeText {
+    from {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+
+/* CARD ENTRY ANIMATION (Bonus ✨) */
+@keyframes popIn {
+    from {
+        transform: translate(-50%, -60%) scale(0.8);
+        opacity: 0;
+    }
+    to {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 1;
+    }
+}
+
+/* 🎆 CONFETTI FIXED */
+.confetti {
+    position: fixed;
+    width: 8px;
+    height: 8px;
+    opacity: 0.9;
+    border-radius: 2px;
+
+    animation: fallSpread linear forwards;
+}
+
+/* REAL CONFETTI ANIMATION */
+@keyframes fallSpread {
+    0% {
+        transform: translate(0, 0) rotate(0deg);
+    }
+    100% {
+        transform: translate(var(--x), 100vh) rotate(720deg);
+    }
+}
+
+/* 🐻 Dancing Bear */
+#bear {
+    width: 90px;
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+}
+
+/* Dancing motion */
+@keyframes dance {
+    0% { transform: rotate(0deg) translateY(0); }
+    25% { transform: rotate(10deg) translateY(-10px); }
+    50% { transform: rotate(0deg) translateY(0); }
+    75% { transform: rotate(-10deg) translateY(-10px); }
+    100% { transform: rotate(0deg) translateY(0); }
+}
+
+@media (max-width: 480px) {
+
+    .card {
+        width: 92%;
+        padding: 18px;
+    }
+
+    h1 {
+        font-size: 1.2rem;
+    }
+
+    .cute {
+        width: 75%;
+    }
+
+    button {
+        font-size: 14px;
+        padding: 8px 16px;
+    }
+
+    #bear {
+        width: 70px;
+    }
+}
